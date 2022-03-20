@@ -1,4 +1,5 @@
 package com.boy.service;
 
-public class UserService {
+public interface UserService {
+    int deleteUser(int id);
 }

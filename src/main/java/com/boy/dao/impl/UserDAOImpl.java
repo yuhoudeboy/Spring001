@@ -1,4 +1,12 @@
 package com.boy.dao.impl;
 
-public class UserDAOImpl {
+import com.boy.dao.UserDAO;
+
+public class UserDAOImpl implements UserDAO {
+
+    @Override
+    public int deleteUser(int id) {
+        System.out.println("delete User in DAO");
+        return 0;
+    }
 }

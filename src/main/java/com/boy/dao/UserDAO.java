@@ -1,5 +1,5 @@
 package com.boy.dao;
 
-public class UserDAO {
-
+public interface UserDAO {
+    int deleteUser(int id);
 }

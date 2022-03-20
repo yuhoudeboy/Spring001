@@ -4,26 +4,35 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-// 工厂类
-// 1.加载配置文件
-// 2.生产配置总记录的对应对象
-// 练习
+/**
+ * Demo class
+ *
+ * @author boy
+ * @date 2022-3-20
+ * 工厂
+ * 1.加载配置文件
+ * 2.生产配置中记录的对应对象
+ */
 public class MyFactory {
-    // 很加载properties文件
-    private  Properties properties = new Properties();
-    public MyFactory(){}
+    /**
+     * 获取流
+     *
+     */
+    private final static Properties PROPERTIES = new Properties();
+
+
+    MyFactory(){};
     public MyFactory(String config) throws IOException {
-        // 获取流
         InputStream resourceAsStream = MyFactory.class.getResourceAsStream(config);
         //  properties 读取配置文件
-        properties.load(resourceAsStream);
+        PROPERTIES.load(resourceAsStream);
     }
-
-    public Object getBean(String name) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        // 1. 通过name,获取对应类路径
-        String classPath = properties.getProperty(name);
+    public Object getBean(String name) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        /* 1.通过name 获取队对应来路径 */
+        String classPath = PROPERTIES.getProperty(name);
         // 2. 反射构建对象
-        Class claz = Class.forName(classPath);
-        return claz.newInstance();
+        Class cLaz = Class.forName(classPath);
+
+        return cLaz.newInstance();
     }
 }

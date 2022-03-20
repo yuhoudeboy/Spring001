@@ -11,5 +11,66 @@
 
     <!-- 要工厂生产的对象 -->
     <bean id="userDAO" class="com.boy.dao.impl.UserDAOImpl"></bean>
-    <bean id="userService" class="com.boy.service.imp.UserServiceImpl"></bean>
+    <bean id="userDAO1" class="com.boy.dao.impl.MyUserDAOImpl"></bean>
+    <bean id="userService" class="com.boy.service.imp.UserServiceImpl">
+        <!-- userDAO属性赋值,值是id为userDAO的一个bean
+            注入: 属性值  依赖关系 IOC
+            依赖注入
+        -->
+        <property name="userDAO" ref="userDAO1"></property>
+
+    </bean>
+    <!-- 自建类型 -->
+    <bean id="addr" class="com.boy.entity.Address">
+        <property name="id" value="1"/>
+        <property name="city" value="bj"/>
+     </bean>
+
+    <!-- Set注入-->
+    <bean id="user" class="com.boy.entity.User">
+        <!-- 简单:jdk 8种基本数据类型 String Date-->
+        <property name="id" value="10"/>
+        <property name="password" value="123abc"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="19"/>
+        <property name="bornDate" value="2022/3/20"/>
+        <!-- 数组-->
+        <property name="hobbys">
+           <array>
+               <value>football</value>
+               <value>basketball</value>
+           </array>
+        </property>
+
+        <!-- 集合 -->
+        <property name="names">
+            <list>
+                <value>tom</value>
+                <value>jack</value>
+            </list>
+        </property>
+        <property name="phones">
+            <set>
+                <value>1311</value>
+                <value>2114</value>
+            </set>
+        </property>
+        <property name="countries">
+            <map>
+                <entry key="zh" value="China"></entry>
+                <entry key="en" value="english"></entry>
+            </map>
+        </property>
+        <property name="files">
+            <props>
+                <prop key="url">jdbc:mysql:xxx</prop>
+                <prop key="username">root</prop>
+            </props>
+        </property>
+
+        <!-- 自建类型 -->
+        <property name="address" ref="addr">
+
+        </property>
+     </bean>
 </beans>
